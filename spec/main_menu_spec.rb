@@ -12,15 +12,17 @@ RSpec.describe MainMenu do
     expect(mainmenu).to be_an_instance_of(MainMenu)
   end
 
-  it "#welcom_msg is displayed" do
+  it "#banner is displayed" do
     #displays banner to user
 #    printed = capture_stdout do
-    printed = puts "Welcome to CONNECT FOUR Enter p to play. Enter q to quit."
 #    puts "#{printed}"
 #    end
 #    expect(puts "#{printed}").to eq("Welcome to CONNECT FOUR Enter p to play. Enter q to quit.")
-    #expect{ printed }.to output("Welcome to CONNECT FOUR Enter p to play. Enter q to quit.").to_stdout
-    expect{ output_to_user }.to output("Hello\n").to_stdout
+    mainmenu = MainMenu.new
+    printed = "Welcome to CONNECT FOUR\nEnter p to play. Enter q to quit.\n"
+    expect{ mainmenu.banner }.to output(printed).to_stdout
+#    puts mainmenu.banner
+#    expect{ mainmenu.banner }.to output("Hello\n").to_stdout
   end
 
   xit "#user_interaction is displayed" do
