@@ -11,18 +11,28 @@ RSpec.describe Turn do
   end
 
   xit "#display_board" do
-  #display current board to player
+      #display current board to player
   end
 
   xit "#player takes a turn" do
   end
-  
-  xit "#player inputs a vaild board choice" do
+
+  context 'when player inputs vaild choice' do
+    xit "places a piece" do
     #input choice from user
     #validate that the spot is open
+    end
+  end
+
+  xit "#player piece is represend by X" do
+
   end
 
   xit "#computer takes a turn" do
+  end
+  
+  xit "computer places a piece" do
+
   end
 
   xit "#game over?" do
