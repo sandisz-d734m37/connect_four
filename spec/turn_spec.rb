@@ -5,13 +5,21 @@ require './lib/turn'
 
 RSpec.describe Turn do
 
-  xit "#Turn exists" do
+  it "#Turn exists" do
     turn = Turn.new
     expect(turn).to be_an_instance_of(Turn)
   end
 
   xit "#display_board" do
-      #display current board to player
+    #display empty_game_board
+    # 6 by 7 table with header of A-G
+    #ABCDEFG
+    #.......
+    #.......
+    #.......
+    #.......
+    #.......
+    #.......
   end
 
   xit "#player takes a turn" do
@@ -30,7 +38,7 @@ RSpec.describe Turn do
 
   xit "#computer takes a turn" do
   end
-  
+
   xit "computer places a piece" do
 
   end
