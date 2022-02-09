@@ -29,28 +29,27 @@ end the turn
 show user the board
 
 =end
-#make the menu
-menu = MainMenu.new
 
-#make the board
+###
+# create our classes
+###
 board = Board.new
-
-#make the interface
 user_interface = UserInterface.new
 
-turn = Turn.new(board)
-
 #print msg to user
-menu.banner
+user_interface.welcome_banner
 
 #get user input
 user_response = user_interface.getinput
 
+player = human
 #IF user chooses to play the game
 if user_response.upcase == "P"
   #show the board
   board.display
-  pry
+  turn = Turn.new(player)
+  turn.start
+
 else
   puts "Why would you say #{user_response}..."
   puts "bye bye"
