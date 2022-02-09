@@ -12,7 +12,6 @@ class Board
             [".",".",".",".",".",".","."]]
 
   end
-
 ###
 #display contents of board to user
 ###
@@ -57,13 +56,12 @@ class Board
   def board_is_full?
 
     check_board = @board
-    
+
+  end
 #puts    check_board.select {|e| e[0] == '.'}
 #    puts check_board.any?('.')
 #    puts check_board.all? {|e| e == "."}
 #    puts check_board.any? {|e| e == '.'}
 #    puts check_board.all? {|e| e == check_board.first}
-
-  end
 
 end

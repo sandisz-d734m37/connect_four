@@ -24,7 +24,13 @@ RSpec.describe Turn do
   end
 =end
 
-  xit "#player takes a turn" do
+  xit "#player takes a turn places an X on the board" do
+    board = Board.new
+    #player input to come from user_interface code
+    player_input = "A"
+    #if the human player is putting the piece use X
+    expect(board.place_piece(player_input, 'X')).to be true
+    #
   end
 
   context 'when player inputs vaild choice' do
