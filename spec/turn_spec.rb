@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/main_menu'
 require './lib/turn'
-#require './lib/display_board'
+require './lib/board'
 
 RSpec.describe Turn do
 
@@ -10,6 +10,7 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
+=begin
   xit "#display_board" do
     #display empty_game_board
     # 6 by 7 table with header of A-G
@@ -21,6 +22,7 @@ RSpec.describe Turn do
     #.......
     #.......
   end
+=end
 
   xit "#player takes a turn" do
   end
