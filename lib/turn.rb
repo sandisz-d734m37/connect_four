@@ -3,10 +3,11 @@ class Turn
   attr_reader :turn_type
   def initialize(turn_type)
     @turn_type = turn_type
+    @interface = UserInterface.new
   end
 
   def start
-    user_interface.place_msg
+    @interface.place_msg
   end
 
 end

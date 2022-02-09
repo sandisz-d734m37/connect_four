@@ -42,13 +42,21 @@ user_interface.welcome_banner
 #get user input
 user_response = user_interface.getinput
 
-player = human
+player = "human"
+
 #IF user chooses to play the game
 if user_response.upcase == "P"
   #show the board
-  board.display
   turn = Turn.new(player)
   turn.start
+
+  7.times do 
+  board.display
+  user_response = user_interface.getinput.upcase
+  board.place_piece(user_response,'X')
+  board.display
+
+  end
 
 else
   puts "Why would you say #{user_response}..."
