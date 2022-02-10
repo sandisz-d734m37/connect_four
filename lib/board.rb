@@ -30,6 +30,7 @@ class Board
 ###
   def place_piece(col, type)
     #map letter givin in col to a number
+    #need to error chech for enter/return from user
     col = col.gsub(/[A-G]/) {|m| m.ord - 65}
     col_num = col.to_i
     open_row = "none"
