@@ -15,6 +15,14 @@ class UserInterface
     puts "Please choose a column to place your piece A-G"
   end
 
+  def draw
+    puts "The game is a DRAW"
+  end
+
+  def winner
+    puts "The game is over"
+  end
+
   ###
   # read input from stdin
   ###
