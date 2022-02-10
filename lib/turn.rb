@@ -1,12 +1,12 @@
 require './lib/user_interface'
 require './lib/board'
 class Turn
-#  attr_reader :turn_type
-  def initialize(turn_type)
+ attr_reader :turn_type, :board
+  def initialize(turn_type, board)
 #  def initialize()
     @turn_type = turn_type
     @user_interface = UserInterface.new
-    @board = Board.new
+    @board = board
   end
 
   def start

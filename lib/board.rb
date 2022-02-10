@@ -1,8 +1,8 @@
 #./lib/board.rb
 require 'pry'
 class Board
-  attr_reader :spot_counter, :open_row
-  def initialize(spot_counter = 0, open_row = "none")
+  attr_reader :open_row
+  def initialize(open_row = "none")
   # 2d arrary  7cols x 6 rows
     @board = [[".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."],
@@ -10,9 +10,7 @@ class Board
             [".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."]]
-    @spot_counter = spot_counter
     @open_row = open_row
-
   end
 ###
 #display contents of board to user
@@ -61,7 +59,16 @@ class Board
   end
 
   def board_is_full?
-
+    spot_counter = 0
+    @board.each do |row|
+      row.each do |col|
+        # puts col
+        if col != "."
+          spot_counter += 1
+        end
+      end
+    end
+    spot_counter == 42
   end
 #puts    check_board.select {|e| e[0] == '.'}
 #    puts check_board.any?('.')

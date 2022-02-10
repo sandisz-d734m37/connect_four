@@ -47,9 +47,10 @@ player = "human"
 #IF user chooses to play the game
 if user_response.upcase == "P"
   #show the board
-  turn = Turn.new(player)
+  turn = Turn.new(player, board)
   turn.start
   until board.board_is_full? == true do
+    # binding.pry
     turn.take_turn("human")
     turn.take_turn("comp")
   end
