@@ -45,17 +45,18 @@ user_response = user_interface.getinput
 player = "human"
 
 #IF user chooses to play the game
-if user_response.upcase == "P"
-  #show the board
-  turn = Turn.new(player)
-  turn.start
+  if user_response.upcase == "P"
+    #show the board
+    # turn = Turn.new(player)
+    # turn.start
 
-  7.times do
-  board.display
-  user_response = user_interface.getinput.upcase
-  board.place_piece(user_respons)
-
-else
-  puts "Why would you say #{user_response}..."
-  puts "bye bye"
-end
+    # 7.times do
+    until(board.place_piece) == false
+      board.display
+      user_response = user_interface.getinput.upcase
+      board.place_piece(user_response, 'X')
+    end
+  else
+    puts "Why would you say #{user_response}..."
+    puts "bye bye"
+  end
