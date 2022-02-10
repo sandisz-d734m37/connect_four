@@ -47,19 +47,12 @@ player = "human"
 #IF user chooses to play the game
 if user_response.upcase == "P"
   #show the board
-   turn = Turn.new(player)
-#  turn = Turn.new
+  turn = Turn.new(player)
   turn.start
-  board.display
-#  turn.take_turn(player)
-#  board.display
-#  7.times do
-  board.display
-  user_response = user_interface.getinput.upcase
-  board.place_piece(user_response,'X')
-  board.display
-#  end
-
+  until board.board_is_full? == true do
+    turn.take_turn("human")
+    turn.take_turn("comp")
+  end
 else
   puts "Why would you say #{user_response}..."
   puts "bye bye"

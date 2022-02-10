@@ -30,6 +30,11 @@ class UserInterface
     gets.chomp
   end
 
+  def compinput
+    opt = ["A","B","C","D","E","F","G"]
+    opt.sample
+  end
+
 
 
 end
