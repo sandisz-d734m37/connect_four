@@ -1,9 +1,11 @@
 require './lib/user_interface'
 require './lib/board'
+require 'matrix'
+
 class Turn
- attr_reader :turn_type, :board
+  attr_reader :turn_type, :board
   def initialize(turn_type, board)
-#  def initialize()
+
     @turn_type = turn_type
     @user_interface = UserInterface.new
     @board = board
@@ -17,11 +19,14 @@ class Turn
   def take_turn(type)
     if type == "human"
       user_response = @user_interface.getinput.upcase
+
+      # Make sure user input is a letter A-G and only 1 char
       until user_response.match(/[A-G]/) && user_response.length == 1
         @user_interface.place_msg
         user_response = @user_interface.getinput.upcase
       end
-      # binding.pry
+
+      # place piece or keep asking user for input when col chosen is full
       while @board.place_piece(user_response,'X') == false
         puts "column full, choose a row other than #{user_response}"
         user_response = @user_interface.getinput.upcase
@@ -37,5 +42,4 @@ class Turn
       @board.display
     end
   end
-
 end
