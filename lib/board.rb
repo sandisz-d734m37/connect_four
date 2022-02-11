@@ -74,8 +74,7 @@ class Board
   end
 
   def won?
-    return check_columns
-#come back, fill in
+    return check_columns || check_rows
   end
 
   def check_columns(board_state = @board)
@@ -94,6 +93,11 @@ class Board
 
     false
 
+
+  end
+  def check_rows
+    transposed_board = @board.transpose
+    check_columns(transposed_board)
   end
 
 
