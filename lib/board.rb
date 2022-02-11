@@ -17,12 +17,14 @@ class Board
 ###
   def display
     puts "ABCDEFG"
-    @board.each do |row|
-      row.each do |col|
-        print col
-      end
-      puts
-    end
+
+    @board.each {|dot| puts dot.join("")}
+    #@board.each do |row|
+     # row.each do |col|
+      #  print col
+      #end
+      #puts
+    #end
   end
 
 ###
