@@ -6,9 +6,12 @@ class Board
   attr_reader :open_row
   def initialize(open_row = "none")
 
-#    @board = Matrix.build(7,6){|row,col| "."}
+    #.build creates row_count x column_count
+    # in our case
+#    @board = Matrix.build(7,6){|col,row| "."}
 
   # 2d arrary   6 rows 7 col
+=begin
      @board = Matrix[
             [".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."],
@@ -17,18 +20,24 @@ class Board
             [".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."]]
 
-=begin
+=end
   #test board
     @board = Matrix[
             ["X","0","X","X","X","X","X"],
-            [".","1","X","X","X","X","X"],
+            ["X","1","X","X","X","X","X"],
             ["X","2","X","X","X","X","X"],
             ["X","3","X","X","X","X","X"],
             ["X","4","X","X","X","X","X"],
-            ["X","5","X","X","X","X","X"]]
+            ["X","6","X","X","X","X","X"]]
 
-=end
     @open_row = open_row
+  end
+
+###
+# getboard for testing
+###
+  def getboard
+    return @board
   end
 ###
 #display contents of board to user
@@ -38,14 +47,16 @@ class Board
 
     puts "ABCDEFG"
 
-    @board.each_with_index do |element, row, col|
-    linesplit += 1
-      print element
-#      print @board[row,col]
+#    @board.each_with_index do |e, row, col|
+    @board.each do |e|
+      linesplit += 1
+      print e
        if linesplit % 7 == 0
           puts
        end
      end
+     #add newline for readability
+     puts
   end
 
 ###
@@ -58,7 +69,6 @@ class Board
     col_num = (col.gsub(/[A-G]/) {|m| m.ord - 65}).to_i
     #find lowest open row for givin col
     row_num = [5,4,3,2,1,0]
-
     row_num.each do |row|
       if @board[row,col_num] == "."
         @open_row = row
