@@ -17,12 +17,14 @@ class Board
 ###
   def display
     puts "ABCDEFG"
-    @board.each do |row|
-      row.each do |col|
-        print col
-      end
-      puts
-    end
+
+    @board.each {|dot| puts dot.join("")}
+    #@board.each do |row|
+     # row.each do |col|
+      #  print col
+      #end
+      #puts
+    #end
   end
 
 ###
@@ -70,10 +72,33 @@ class Board
     end
     spot_counter == 42
   end
-#puts    check_board.select {|e| e[0] == '.'}
-#    puts check_board.any?('.')
-#    puts check_board.all? {|e| e == "."}
-#    puts check_board.any? {|e| e == '.'}
-#    puts check_board.all? {|e| e == check_board.first}
+
+  def won?
+    return check_columns || check_rows
+  end
+
+  def check_columns(board_state = @board)
+    board_state.each do |col|
+
+      (0..2).each do |row|
+
+        won = col[row..(row + 3)].all? {
+          |spot| spot == col[row] && spot != "."
+        }
+        return true if won
+
+      end
+
+    end
+
+    false
+
+
+  end
+  def check_rows
+    transposed_board = @board.transpose
+    check_columns(transposed_board)
+  end
+
 
 end

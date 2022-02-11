@@ -49,7 +49,7 @@ if user_response.upcase == "P"
   #show the board
   turn = Turn.new(player, board)
   turn.start
-  until board.board_is_full? == true do
+  until board.board_is_full? == true || board.won? == true do
     # binding.pry
     turn.take_turn("human")
     turn.take_turn("comp")
