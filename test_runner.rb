@@ -16,7 +16,8 @@ player = "human"
 turn = Turn.new(player, board)
 board.display
 #pry.binding
-#board.place_piece('A','X')
+board.place_piece('A','X')
+board.display
 #board.display
 #board.board_is_full?
 

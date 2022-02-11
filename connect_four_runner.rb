@@ -50,10 +50,10 @@ if user_response.upcase == "P"
   turn = Turn.new(player, board)
   turn.start
   until board.board_is_full? == true do
-    # binding.pry
     turn.take_turn("human")
     turn.take_turn("comp")
   end
+  
 else
   puts "Why would you say #{user_response}..."
   puts "bye bye"

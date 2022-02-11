@@ -9,15 +9,15 @@ class Board
 #    @board = Matrix.build(7,6){|row,col| "."}
 
   # 2d arrary   6 rows 7 col
-=begin
-     @board = Matrix[[".",".",".",".",".",".","."],
-             [".",".",".",".",".",".","."],
-             [".",".",".",".",".",".","."],
-             [".",".",".",".",".",".","."],
-             [".",".",".",".",".",".","."],
-             [".",".",".",".",".",".","."]]
-=end
+     @board = Matrix[
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."]]
 
+=begin
   #test board
     @board = Matrix[
             ["X","0","X","X","X","X","X"],
@@ -27,6 +27,7 @@ class Board
             ["X","4","X","X","X","X","X"],
             ["X","5","X","X","X","X","X"]]
 
+=end
     @open_row = open_row
   end
 ###
@@ -55,11 +56,11 @@ class Board
     #need to error chech for enter/return from user
     # col =
     col_num = (col.gsub(/[A-G]/) {|m| m.ord - 65}).to_i
-
     #find lowest open row for givin col
     row_num = [5,4,3,2,1,0]
+
     row_num.each do |row|
-      if @board[row][col_num] == "."
+      if @board[row,col_num] == "."
         @open_row = row
         #exit on finding 1st open row
         break
@@ -67,24 +68,20 @@ class Board
         @open_row = "none"
       end
     end
-
     #found open row place piece
     if @open_row == "none"
       return false
     else
-      @board[@open_row][col_num] = type
+      @board[@open_row,col_num] = type
       return true
     end
   end
 
   def board_is_full?
     spot_counter = 0
-    @board.each do |row|
-      row.each do |col|
-        # puts col
-        if col != "."
-          spot_counter += 1
-        end
+    @board.each_with_index do |element, row, col|
+      if element != "."
+        spot_counter += 1
       end
     end
 #returns a turn value when 42
