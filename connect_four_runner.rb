@@ -36,25 +36,27 @@ show user the board
 board = Board.new
 user_interface = UserInterface.new
 
+# loop do
 #print msg to user
-user_interface.welcome_banner
+  user_interface.welcome_banner
 
-#get user input
-user_response = user_interface.getinput
+  #get user input
+  user_response = user_interface.getinput
 
-player = "human"
+  player = "human"
 
-#IF user chooses to play the game
-if user_response.upcase == "P"
-  #show the board
-  turn = Turn.new(player, board)
-  turn.start
-  until board.board_is_full? == true do
-    # binding.pry
-    turn.take_turn("human")
-    turn.take_turn("comp")
+  #IF user chooses to play the game
+  if user_response.upcase == "P"
+    #show the board
+    turn = Turn.new(player, board)
+    turn.start
+    until board.board_is_full? == true do
+      # binding.pry
+      turn.take_turn("human")
+      turn.take_turn("comp")
+    end
+  else
+    puts "Why would you say #{user_response}..."
+    puts "bye bye"
   end
-else
-  puts "Why would you say #{user_response}..."
-  puts "bye bye"
-end
+# end
