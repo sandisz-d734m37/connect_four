@@ -72,10 +72,29 @@ class Board
     end
     spot_counter == 42
   end
-#puts    check_board.select {|e| e[0] == '.'}
-#    puts check_board.any?('.')
-#    puts check_board.all? {|e| e == "."}
-#    puts check_board.any? {|e| e == '.'}
-#    puts check_board.all? {|e| e == check_board.first}
+
+  def won?
+    return check_columns
+#come back, fill in
+  end
+
+  def check_columns(board_state = @board)
+    board_state.each do |col|
+
+      (0..2).each do |row|
+
+        won = col[row..(row + 3)].all? {
+          |spot| spot == col[row] && spot != "."
+        }
+        return true if won
+
+      end
+
+    end
+
+    false
+
+  end
+
 
 end
