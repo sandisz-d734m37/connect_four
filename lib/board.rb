@@ -6,26 +6,30 @@ class Board
   attr_reader :open_row
   def initialize(open_row = "none")
   # 2d arrary  7cols x 6 rows
-    # @board = [[".",".",".",".",".",".","."],
-    #         [".",".",".",".",".",".","."],
-    #         [".",".",".",".",".",".","."],
-    #         [".",".",".",".",".",".","."],
-    #         [".",".",".",".",".",".","."],
-    #         [".",".",".",".",".",".","."]]
-    @board = Matrix.build(6, 7) {|row, col| "."}
+    @board = [["✭","✭","✭","✭","✭","✭","✭"],
+            ["✭","✭","✭","✭","✭","✭","✭"],
+            ["✭","✭","✭","✭","✭","✭","✭"],
+            ["✭","✭","✭","✭","✭","✭","✭"],
+            ["✭","✭","✭","✭","✭","✭","✭"],
+            ["✭","✭","✭","✭","✭","✭","✭"]]
+    # @board = Matrix.build(6, 7) {|row, col| "✭"}
+    # binding.pry
     @open_row = open_row
   end
 ###
 #display contents of board to user
 ###
   def display
-    puts "ABCDEFG"
-    @board.each do |row|
-      row.each do |col|
-        print col
-      end
-      puts
-    end
+    puts "A B C D E F G"
+    @board.each {|dot| puts dot.join(" ")}
+    binding.pry
+    # @board.each do |row|
+    #   # row.each do |col|
+    #     print row.map { |x| x.join(' ')}
+    #   # end
+    #   # puts
+    # end
+      # @board
   end
 
 ###
@@ -40,7 +44,7 @@ class Board
     #find lowest open row for givin col
     row_num = [5,4,3,2,1,0]
     row_num.each do |row|
-      if @board[row][col_num] == "."
+      if @board[row][col_num] == "✭"
         @open_row = row
         p @open_row
         #exit on finding 1st open row
@@ -66,17 +70,34 @@ class Board
     @board.each do |row|
       row.each do |col|
         # puts col
-        if col != "."
+        if col != "✭"
           spot_counter += 1
         end
       end
     end
     spot_counter == 42
   end
+
+  def check_columns(board = @board)
+    board.each do |col|
+      (0..3).each do |row|
+        won = col[row..(row + 3)].all? { |spot| spot == col[row] && spot != "✭"}
+        return true if won
+      end
+    end
+
+    false
+  end
+
+  def check_rows
+    transposed_board = @board.transpose
+    check_columns(transposed_board)
+  end
 #puts    check_board.select {|e| e[0] == '.'}
 #    puts check_board.any?('.')
 #    puts check_board.all? {|e| e == "."}
 #    puts check_board.any? {|e| e == '.'}
 #    puts check_board.all? {|e| e == check_board.first}
+
 
 end
