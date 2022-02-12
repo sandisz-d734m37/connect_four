@@ -45,6 +45,6 @@ board.display
 
 p board.won?
 #pry
-#p board.pos_slope_diaganols
+p board.check_forward_diaganols
 
 #board.board_is_full?

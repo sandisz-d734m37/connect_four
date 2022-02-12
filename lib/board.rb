@@ -112,6 +112,8 @@ class Board
             p el
 #          binding.pry
 
+#            diagonal_group.first == el && !== "."
+# check logic             
             diagonal_group.first == el && !el.nil?
           end
             return true
