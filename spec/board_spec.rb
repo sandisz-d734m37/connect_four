@@ -29,17 +29,19 @@ RSpec.describe Board do
     expect(board.place_piece('A','X')).to be false
   end
 
-  xit "Can determine a vertical win" do
+  it "Can determine a vertical win" do
+    board = Board.new
+
     until board.won? == true
-      board.place_piece('A', 'X')
+      board.place_piece('G', 'X')
     end
-    # binding.pry
+
     expect(board.board[2..5]).to all(include('X'))
     expect(board.board[1]).not_to include('X')
 
   end
 
-  it "Can determin horizontal win" do
+  it "Can determine horizontal win" do
     board = Board.new
 
     until board.won? == true
@@ -50,7 +52,6 @@ RSpec.describe Board do
 
     expect(board.board.transpose[0..3]).to all(include('X'))
     expect(board.board.transpose[4]).not_to include('X')
-      # binding.pry
     end
 
 end
