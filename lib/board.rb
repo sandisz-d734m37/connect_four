@@ -78,7 +78,7 @@ class Board
 # when one of the victory conditions is met return true
 ###
   def won?
-    return check_columns || check_rows
+    return check_columns || check_rows || check_forward_diaganols
   end
 
 ###
@@ -103,5 +103,33 @@ class Board
     transposed_board = @board.transpose
     check_columns(transposed_board)
   end
+
+  def check_forward_diaganols
+      (0..3).each do |col_idx|
+        (0..3).each do |col_height|
+          diagonal_group = find_forward_diaganol_starting_at(col_idx, col_height)
+          if diagonal_group.all? do |el|
+            p el
+#          binding.pry
+
+            diagonal_group.first == el && !el.nil?
+          end
+            return true
+          end
+        end
+      end
+
+      false
+    end
+
+    def find_forward_diaganol_starting_at(col_idx, col_height)
+      diagonal_group = []
+
+      (col_idx..(col_idx + 3)).each_with_index do |col, height|
+        diagonal_group << @board[col][col_height + height]
+      end
+
+p      diagonal_group
+    end
 
 end

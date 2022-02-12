@@ -16,7 +16,6 @@ board.place_piece('G','X')
 board.place_piece('G','X')
 board.place_piece('G','X')
 board.place_piece('G','X')
-=end
 
 board.place_piece('A','X')
 board.place_piece('B','X')
@@ -26,12 +25,26 @@ board.place_piece('E','X')
 board.place_piece('F','X')
 board.place_piece('G','X')
 
+=end
+
+board.place_piece('A','X')
+board.place_piece('B','X')
+board.place_piece('B','X')
+board.place_piece('C','X')
+board.place_piece('C','X')
+board.place_piece('C','X')
+board.place_piece('D','X')
+board.place_piece('D','X')
+board.place_piece('D','X')
+board.place_piece('D','X')
+
+
 
 
 board.display
 
-#p board.won?
+p board.won?
 #pry
-board.check_columns
+#p board.pos_slope_diaganols
 
 #board.board_is_full?
