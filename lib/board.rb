@@ -1,8 +1,8 @@
 #./lib/board.rb
 require 'pry'
 class Board
-  attr_reader :open_row
-  def initialize(open_row = "none")
+  attr_reader :open_row, :board
+  def initialize(open_row = "none", board = @board)
   # 2d arrary  7cols x 6 rows
     @board = [[".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."],
@@ -17,6 +17,7 @@ class Board
 ###
   def display
     puts "A B C D E F G"
+    # binding.pry
     @board.each {|dot| puts dot.join(" ")}
   end
 
@@ -34,7 +35,6 @@ class Board
     row_num.each do |row|
       if @board[row][col_num] == "."
         @open_row = row
-        p @open_row
         #exit on finding 1st open row
         break
       else
