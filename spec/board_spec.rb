@@ -13,7 +13,7 @@ RSpec.describe Board do
     expect(board.display[0]).to eq(". . . . . . .")
   end
 
-  it "#place_piece can place a piece" do
+  it "can place a piece" do
     board = Board.new
     board.place_piece('A','X')
     expect(board.board[5][0]).to eq('X')
@@ -52,6 +52,18 @@ RSpec.describe Board do
 
     expect(board.board.transpose[0..3]).to all(include('X'))
     expect(board.board.transpose[4]).not_to include('X')
+  end
+
+  it "Can determine if the board is full" do
+    board = Board.new
+
+    until board.board_is_full? == true
+      (0..6).each do |col|
+        board.place_piece(col, 'X')
+      end
     end
+
+    expect(board.board_is_full?).to be true
+  end
 
 end
