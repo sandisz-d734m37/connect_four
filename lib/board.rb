@@ -18,22 +18,20 @@ class Board
   def display
     puts "ABCDEFG"
 
+    #each element of board strip out \n to format puts
     @board.each {|dot| puts dot.join("")}
-    #@board.each do |row|
-     # row.each do |col|
-      #  print col
-      #end
-      #puts
-    #end
+    puts
+
   end
 
 ###
 # Place a piece in the given column
 ###
   def place_piece(col, type)
-    #map letter givin in col to a number
     #need to error chech for enter/return from user
-    # col =
+    #map letter givin in col to a number
+    # turn A-G into  single-byte character encoding and subtract 65
+    # A = 65 becomes 0 to use in array positions
     col_num = (col.gsub(/[A-G]/) {|m| m.ord - 65}).to_i
 
     #find lowest open row for givin col
@@ -41,7 +39,6 @@ class Board
     row_num.each do |row|
       if @board[row][col_num] == "."
         @open_row = row
-        p @open_row
         #exit on finding 1st open row
         break
       else
@@ -51,54 +48,60 @@ class Board
 
     #found open row place piece
     if @open_row == "none"
-      puts "open row is #{@open_row}"
+#      puts "open row is #{@open_row}"
       return false
     else
-      puts "open row in else is #{@open_row}"
+#      puts "open row in else is #{@open_row}"
       @board[@open_row][col_num] = type
       return true
     end
   end
 
+###
+# When all 42 spots in the board are taken return true
+###
   def board_is_full?
+
     spot_counter = 0
     @board.each do |row|
       row.each do |col|
         # puts col
         if col != "."
-          spot_counter += 1
+        spot_counter += 1
         end
       end
     end
     spot_counter == 42
   end
 
+###
+# when one of the victory conditions is met return true
+###
   def won?
     return check_columns || check_rows
   end
 
+###
+# check_columns:
+###
   def check_columns(board_state = @board)
+
     board_state.each do |col|
-
+#    puts "col is #{col}"
       (0..2).each do |row|
-
-        won = col[row..(row + 3)].all? {
-          |spot| spot == col[row] && spot != "."
-        }
+#        puts "col is #{col} row is #{row} element is #{col[row]}"
+        won = col[row..(row + 3)].all? do |spot|
+          spot == col[row] && spot != "."
+        end
         return true if won
-
       end
-
     end
-
     false
-
-
   end
+
   def check_rows
     transposed_board = @board.transpose
     check_columns(transposed_board)
   end
-
 
 end
