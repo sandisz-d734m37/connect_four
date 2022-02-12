@@ -1,8 +1,8 @@
 #./lib/board.rb
 require 'pry'
 class Board
-  attr_reader :open_row
-  def initialize(open_row = "none")
+  attr_reader :open_row, :board
+  def initialize(open_row = "none", board = @board)
   # 2d arrary  7cols x 6 rows
     @board = [[".",".",".",".",".",".","."],
             [".",".",".",".",".",".","."],
@@ -34,14 +34,17 @@ class Board
     #map letter givin in col to a number
     #need to error chech for enter/return from user
     # col =
-    col_num = (col.gsub(/[A-G]/) {|m| m.ord - 65}).to_i
+    if col.is_a? String
+      col_num = (col.gsub(/[A-G]/) {|m| m.ord - 65}).to_i
+    else
+      col_num = col
+    end
 
     #find lowest open row for givin col
     row_num = [5,4,3,2,1,0]
     row_num.each do |row|
       if @board[row][col_num] == "."
         @open_row = row
-        p @open_row
         #exit on finding 1st open row
         break
       else
@@ -51,10 +54,8 @@ class Board
 
     #found open row place piece
     if @open_row == "none"
-      puts "open row is #{@open_row}"
       return false
     else
-      puts "open row in else is #{@open_row}"
       @board[@open_row][col_num] = type
       return true
     end
