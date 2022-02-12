@@ -16,15 +16,8 @@ class Board
 #display contents of board to user
 ###
   def display
-    puts "ABCDEFG"
-
-    @board.each {|dot| puts dot.join("")}
-    #@board.each do |row|
-     # row.each do |col|
-      #  print col
-      #end
-      #puts
-    #end
+    puts "A B C D E F G"
+    @board.each {|dot| puts dot.join(" ")}
   end
 
 ###
@@ -51,10 +44,8 @@ class Board
 
     #found open row place piece
     if @open_row == "none"
-      puts "open row is #{@open_row}"
       return false
     else
-      puts "open row in else is #{@open_row}"
       @board[@open_row][col_num] = type
       return true
     end
@@ -64,7 +55,6 @@ class Board
     spot_counter = 0
     @board.each do |row|
       row.each do |col|
-        # puts col
         if col != "."
           spot_counter += 1
         end
@@ -79,22 +69,16 @@ class Board
 
   def check_columns(board_state = @board)
     board_state.each do |col|
-
       (0..2).each do |row|
-
         won = col[row..(row + 3)].all? {
           |spot| spot == col[row] && spot != "."
         }
         return true if won
-
       end
-
     end
-
     false
-
-
   end
+
   def check_rows
     transposed_board = @board.transpose
     check_columns(transposed_board)

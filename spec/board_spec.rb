@@ -18,12 +18,12 @@ RSpec.describe Board do
 #    expect{ board.display }.to output(printed).to_stdout
   end
 
-  it "#place_piece can place a piece" do
+  xit "#place_piece can place a piece" do
     board = Board.new
       expect(board.place_piece('A','X')).to be true
   end
 
-  it "#place_piece cannot place a piece if column is full" do
+  xit "#place_piece cannot place a piece if column is full" do
     board = Board.new
 
     board.place_piece('A','X')
