@@ -91,6 +91,7 @@ class Board
       (0..2).each do |row|
 #        puts "col is #{col} row is #{row} element is #{col[row]}"
         won = col[row..(row + 3)].all? do |spot|
+          puts "spot is #{spot}"
           spot == col[row] && spot != "."
         end
         return true if won
@@ -108,13 +109,14 @@ class Board
       (0..3).each do |col_idx|
         (0..3).each do |col_height|
           diagonal_group = find_forward_diaganol_starting_at(col_idx, col_height)
+          puts "diag group array #{diagonal_group}"
           if diagonal_group.all? do |el|
-            p el
+            puts "element of diag array from all is #{el}"
 #          binding.pry
 
-#            diagonal_group.first == el && !== "."
-# check logic             
-            diagonal_group.first == el && !el.nil?
+            diagonal_group.first == el && el != "."
+# check logic
+#            diagonal_group.first == el && !el.nil?
           end
             return true
           end
@@ -128,6 +130,7 @@ class Board
       diagonal_group = []
 
       (col_idx..(col_idx + 3)).each_with_index do |col, height|
+        binding.pry
         diagonal_group << @board[col][col_height + height]
       end
 
