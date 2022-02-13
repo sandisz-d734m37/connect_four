@@ -115,42 +115,49 @@ class Board
   end
 
   def check_backward_diaganols
-    #board length is 6
-    #
-  #  pry
-      (0..3).each do |col_idx|
-        (0..3).each do |col_height|
-          diagonal_group = find_backward_diaganol_starting_at(col_idx, col_height)
-          if diagonal_group.all? do |el|
-            diagonal_group.first == el && el != "."
-          end
+  #board length is 6
+    (0..2).each do |col_idx|
+      (0..2).each do |col_height|
+        diagonal_group = find_backward_diaganol_starting_at(col_idx,col_height)
+
+          if diagonal_group.all? { |el| diagonal_group.first == el && el != "." }
             return true
           end
+      end
+    end
+    false
+  end
+
+
+  def find_backward_diaganol_starting_at(col_idx, col_height)
+    diagonal_group = []
+    (col_idx..(col_idx + 3)).each_with_index do |col, height|
+      diagonal_group << @board[col][col_height + height]
+    end
+      diagonal_group
+  end
+
+
+  def check_forward_diaganols
+    (0..2).each do |col_idx|
+      (0..2).each do |col_height|
+        diagonal_group = find_forward_diaganol_starting_at(col_idx, col_height)
+        if diagonal_group.all? { |el| diagonal_group.first == el && el != "." }
+          return true
         end
-      end
-
-      false
     end
+    # return false as default
+    false
+  end
+  end
 
-
-    def find_backward_diaganol_starting_at(col_idx, col_height)
-      diagonal_group = []
-puts "col_idx is #{col_idx} col_height is #{col_height}"
-      (col_idx..(col_idx + 3)).each_with_index do |col, height|
-        puts "spot on board is #{@board[col][col_height + height]}"
-        diagonal_group << @board[col][col_height + height]
-      end
-
-p      diagonal_group
+  def find_forward_diaganol_starting_at(col_idx, col_height)
+#puts "col_idx is #{col_idx} col_height is #{col_height}"
+    diagonal_group = []
+    (col_idx..(col_idx + 3)).each_with_index do |col, height|
+      puts "spot on board is #{@board[col][col_height - height]}"
+      diagonal_group << @board[col][col_height - height]
     end
-
-#   ABCDEFG
-#   0123456
-#0  .......
-#1  .......
-#2  ...X...
-#3  ..X....
-#4  .X.....
-#5  X......
-
+    diagonal_group
+  end
 end
