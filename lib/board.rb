@@ -19,12 +19,12 @@ class Board
     puts "ABCDEFG"
 
     @board.each {|dot| puts dot.join("")}
-    #@board.each do |row|
-     # row.each do |col|
-      #  print col
-      #end
-      #puts
-    #end
+    # @board.each do |row|
+    #  row.each do |col|
+    #    print col
+    #   end
+    #   puts
+    # end
   end
 
 ###
@@ -81,7 +81,7 @@ class Board
   def check_columns(board_state = @board)
     board_state.each do |col|
 
-      (0..2).each do |row|
+      (0..3).each do |row|
 
         won = col[row..(row + 3)].all? {
           |spot| spot == col[row] && spot != "."
@@ -96,9 +96,19 @@ class Board
 
 
   end
-  def check_rows
-    transposed_board = @board.transpose
-    check_columns(transposed_board)
+  
+  def check_rows(transposed_board = @board.transpose)
+    # transposed_board = @board.transpose
+    # check_columns(transposed_board)
+    transposed_board.each do |col|
+      (0..2).each do |row|
+        won = col[row..(row + 3)].all?{
+          |spot| spot == col[row] && spot != "."
+        }
+        return true if won
+      end
+    end
+    false
   end
 
 

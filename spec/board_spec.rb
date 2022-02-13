@@ -10,7 +10,7 @@ RSpec.describe Board do
 
   xit "can display the board" do
     board = Board.new
-    expect(board.display[0]).to eq(". . . . . . .")
+    expect(board.display).to output.to_board
   end
 
   it "can place a piece" do
@@ -32,6 +32,8 @@ RSpec.describe Board do
   it "Can determine a vertical win" do
     board = Board.new
 
+    expect(board.won?).to be false
+
     until board.won? == true
       board.place_piece('G', 'X')
     end
@@ -43,6 +45,8 @@ RSpec.describe Board do
 
   it "Can determine horizontal win" do
     board = Board.new
+
+    expect(board.won?).to be false
 
     until board.won? == true
       (0..3).each do |col|
