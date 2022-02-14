@@ -38,6 +38,44 @@ RSpec.describe Board do
     expect(board.place_piece('A','X')).to be false
   end
 
+it "col check fail" do
+  col_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      ["X","X","X",".",".",".","."]
+    ]
+  board = Board.new(col_board)
+  expect(board.check_columns).to be false
+end
+it "col check" do
+  col_board = [
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      ["X","X","X","X",".",".","."]
+    ]
+  board = Board.new(col_board)
+  expect(board.check_columns).to be true
+end
+
+it "row check" do
+  col_board = [
+      ["X",".",".",".",".",".","."],
+      ["X",".",".",".",".",".","."],
+      ["X",".",".",".",".",".","."],
+      ["X",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."],
+      [".",".",".",".",".",".","."]
+    ]
+  board = Board.new(col_board)
+  expect(board.check_rows).to be true
+end
+
   it "backward diag check col A-D" do
     diag_board = [
         ["X",".",".",".",".",".","."],
