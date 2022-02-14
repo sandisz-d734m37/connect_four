@@ -33,7 +33,14 @@ show user the board
 ###
 # create our classes
 ###
-board = Board.new
+board = [[".",".",".",".",".",".","."],
+          [".",".",".",".",".",".","."],
+          [".",".",".",".",".",".","."],
+          [".",".",".",".",".",".","."],
+          [".",".",".",".",".",".","."],
+          [".",".",".",".",".",".","."]]
+
+gameboard = Board.new(board)
 user_interface = UserInterface.new
 
 #print msg to user
@@ -49,8 +56,7 @@ if user_response.upcase == "P"
   #show the board
   turn = Turn.new(player, board)
   turn.start
-  until board.board_is_full? == true || board.won? == true do
-    # binding.pry
+  until gameboard.board_is_full? == true || gameboard.won? == true do
     turn.take_turn("human")
     turn.take_turn("comp")
   end
