@@ -120,16 +120,38 @@ class Board
         end
       end
     end
-
     false
   end
 
-  def downward_diag_to_check(row_index,spot_index)
+  def downward_diag_to_check(row_index, spot_index)
     to_check = []
     (row_index..(row_index + 3)).each_with_index do |row, vert_move|
       to_check << @board[row][spot_index + vert_move]
     end
     to_check
   end
-    
+
+###############################
+  def check_upward_diagonals
+    (0..2).each do |row_index|
+      (3..6).each do |spot_index|
+        to_check = upward_diag_to_check(row_index, spot_index)
+        if to_check.all? {|spot| to_check.first == spot && spot != "."}
+          return true
+        end
+      end
+    end
+    false
+  end
+
+  def upward_diag_to_check(row_index, spot_index)
+    to_check = []
+    (row_index..(row_index + 3)).each_with_index do |row, vert_move|
+      to_check << @board[row][spot_index - vert_move]
+    end
+    to_check
+  end
+
+######################################
+
 end

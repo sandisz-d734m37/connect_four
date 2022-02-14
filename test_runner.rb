@@ -32,26 +32,36 @@ puts "----------------------------"
 
 board =Board.new
 
-board.place_piece('C','█')
-board.place_piece('C','█')
-board.place_piece('C','█')
+# board.place_piece('C','█')
+# board.place_piece('C','█')
+# board.place_piece('C','█')
+# board.place_piece('C','O')
+# board.place_piece('D','█')
+# board.place_piece('D','█')
+# board.place_piece('D','O')
+# board.place_piece('E','█')
+# board.place_piece('E','O')
+
 board.place_piece('C','O')
 board.place_piece('D','█')
-board.place_piece('D','█')
+board.place_piece('E','█')
 board.place_piece('D','O')
 board.place_piece('E','█')
 board.place_piece('E','O')
+board.place_piece('F','█')
+board.place_piece('F','█')
+board.place_piece('F','O')
 
 
 board.display
 
-#puts "Upward: #{board.check_upward_diagonals}"
-puts "Downward: #{board.check_downward_diagonals}"
+puts "Upward: #{board.check_upward_diagonals}"
+#puts "Downward: #{board.check_downward_diagonals}"
 
 board.place_piece('F','O')
 
 
 board.display
 
-#puts "Upward: #{board.check_upward_diagonals}"
-puts "Downward: #{board.check_downward_diagonals}"
+puts "Upward: #{board.check_upward_diagonals}"
+#puts "Downward: #{board.check_downward_diagonals}"
