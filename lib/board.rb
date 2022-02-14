@@ -74,10 +74,12 @@ class Board
     spot_counter == 42
   end
 
+
   def won?
-    return check_columns || check_rows
+    return check_columns || check_rows || check_upward_diagonals || check_downward_diagonals
   end
 
+  
   def check_columns(board_state = @board)
     board_state.each do |col|
 

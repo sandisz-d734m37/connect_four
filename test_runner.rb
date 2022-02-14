@@ -54,14 +54,16 @@ board.place_piece('F','O')
 
 
 board.display
-
+p board.won?
 puts "Upward: #{board.check_upward_diagonals}"
+
 #puts "Downward: #{board.check_downward_diagonals}"
 
 board.place_piece('F','O')
 
 
 board.display
+p board.won?
 
 puts "Upward: #{board.check_upward_diagonals}"
 #puts "Downward: #{board.check_downward_diagonals}"
