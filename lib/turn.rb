@@ -21,7 +21,6 @@ class Turn
         @user_interface.place_msg
         user_response = @user_interface.getinput.upcase
       end
-      # binding.pry
       while @board.place_piece(user_response,'X') == false
         puts "column full, choose a row other than #{user_response}"
         user_response = @user_interface.getinput.upcase

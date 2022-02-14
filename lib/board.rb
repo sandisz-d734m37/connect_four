@@ -1,21 +1,23 @@
 #./lib/board.rb
 require 'pry'
 class Board
-  attr_reader :open_row, :board
+#  attr_reader :open_row, :board
+#  attr_reader :open_row
+  attr_reader :board
 
-  def initialize(open_row = "none", board)
-    @board = board
+#  def initialize(open_row = "none", board)
+  def initialize(board)
+#  def initialize()
+                  # board = [[".",".",".",".",".",".","."],
+                  #          [".",".",".",".",".",".","."],
+                  #          [".",".",".",".",".",".","."],
+                  #          [".",".",".",".",".",".","."],
+                  #          [".",".",".",".",".",".","."],
+                  #          [".",".",".",".",".",".","."]] )
+#    @board = board
   # 2d arrary  7cols x 6 rows
-=begin
-    @board = [[".",".",".",".",".",".","."],
-              [".",".",".",".",".",".","."],
-              [".",".",".",".",".",".","."],
-              [".",".",".",".",".",".","."],
-              [".",".",".",".",".",".","."],
-              [".",".",".",".",".",".","."]]
-=end
-
-    @open_row = open_row
+    @board = board
+    @open_row = "none"
   end
 ###
 #display contents of board to user
@@ -83,7 +85,9 @@ class Board
 # when one of the victory conditions is met return true
 ###
   def won?
-    return check_columns || check_rows || check_forward_diaganols || check_backward_diaganols
+    if check_columns || check_rows || check_forward_diaganols || check_backward_diaganols
+      return true
+    end
   end
 
 ###
@@ -93,9 +97,12 @@ class Board
     board_columns = board_state.length
 #    puts "board_columns is #{board_columns}"
     board_state.each do |col|
+#      puts "new toplevel loop"
       (0..(board_columns - 3)).each do |row|
         won = col[row..(row + 3)].all? do |spot|
-#          puts "spot is #{spot}"
+#          puts "col is #{col} row is #{row}"
+#          puts "element in check_columns #{col[row]}"
+#          puts "----"
           spot == col[row] && spot != "."
         end
         return true if won
@@ -111,7 +118,7 @@ class Board
 
   def check_backward_diaganols
   #board length is 6
-    (0..3).each do |col_idx|
+    (0..2).each do |col_idx|
       (0..3).each do |col_height|
         diagonal_group = find_backward_diaganol_starting_at(col_idx,col_height)
 
@@ -140,6 +147,7 @@ class Board
         if diagonal_group.all? { |el| diagonal_group.first == el && el != "." }
           return true
         end
+        return false
     end
     # return false as default
     false

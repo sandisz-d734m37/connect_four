@@ -40,7 +40,7 @@ board = [[".",".",".",".",".",".","."],
           [".",".",".",".",".",".","."],
           [".",".",".",".",".",".","."]]
 
-gameboard = Board.new(board)
+board = Board.new(board)
 user_interface = UserInterface.new
 
 #print msg to user
@@ -56,7 +56,7 @@ if user_response.upcase == "P"
   #show the board
   turn = Turn.new(player, board)
   turn.start
-  until gameboard.board_is_full? == true || gameboard.won? == true do
+  until board.board_is_full? == true || board.won? == true do
     turn.take_turn("human")
     turn.take_turn("comp")
   end
