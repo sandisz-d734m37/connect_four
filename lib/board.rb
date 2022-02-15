@@ -1,16 +1,11 @@
 #./lib/board.rb
 require 'pry'
 class Board
-  attr_reader :open_row, :board
-  def initialize(open_row = "none", board = @board)
+  attr_reader :board
+  def initialize(board = @board)
   # 2d arrary  7cols x 6 rows
-    @board = [[".",".",".",".",".",".","."],
-            [".",".",".",".",".",".","."],
-            [".",".",".",".",".",".","."],
-            [".",".",".",".",".",".","."],
-            [".",".",".",".",".",".","."],
-            [".",".",".",".",".",".","."]]
-    @open_row = open_row
+    @board = board
+    @open_row = "none"
   end
 ###
 #display contents of board to user

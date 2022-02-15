@@ -33,7 +33,13 @@ show user the board
 ###
 # create our classes
 ###
-board = Board.new
+gameboard = [[".",".",".",".",".",".","."],
+        [".",".",".",".",".",".","."],
+        [".",".",".",".",".",".","."],
+        [".",".",".",".",".",".","."],
+        [".",".",".",".",".",".","."],
+        [".",".",".",".",".",".","."]]
+board = Board.new(gameboard)
 user_interface = UserInterface.new
 player = "human"
 turn = Turn.new(player, board)
