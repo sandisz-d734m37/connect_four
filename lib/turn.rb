@@ -10,26 +10,31 @@ class Turn
   end
 
   def start
-    @board.display
     @user_interface.place_msg
   end
 
+  def playagain
+    puts "Would you like to play again?"
+    answer = @user_interface.getinput
+    if answer.upcase == "Y"
+      return true
+    end
+  end
+
   def take_turn(type)
+    @board.display
     if type == "human"
+
       user_response = @user_interface.getinput.upcase
       until user_response.match(/[A-G]/) && user_response.length == 1
         @user_interface.place_msg
         user_response = @user_interface.getinput.upcase
       end
-      # binding.pry
       while @board.place_piece(user_response,'X') == false
         puts "column full, choose a row other than #{user_response}"
         user_response = @user_interface.getinput.upcase
-
       end
-#      if @board.won?
-#        puts "Congrats #{type}"
-#      end
+
     else
       #ai turnstuff here
       comp_response = @user_interface.compinput.upcase
@@ -37,8 +42,6 @@ class Turn
       while @board.place_piece(comp_response,'O') == false
         comp_response = @user_interface.compinput.upcase
       end
-#      @board.display
     end
   end
-
 end

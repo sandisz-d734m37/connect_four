@@ -27,6 +27,14 @@ class Board
     # end
   end
 
+  def clear_board
+    @board = [[".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."],
+            [".",".",".",".",".",".","."]]
+  end
 ###
 # Place a piece in the given column
 ###
@@ -79,7 +87,7 @@ class Board
     return check_columns || check_rows || check_upward_diagonals || check_downward_diagonals
   end
 
-  
+
   def check_columns(board_state = @board)
     board_state.each do |col|
 

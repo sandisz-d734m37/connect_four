@@ -16,11 +16,22 @@ class UserInterface
   end
 
   def draw
-    puts "The game is a DRAW"
+    puts "----------"
+    puts "Its a DRAW"
+    puts "----------"
   end
 
-  def winner
-    puts "The game is over"
+  def human_winner
+    puts "----------"
+    puts "Congrats you Won!"
+    puts "----------"
+  end
+
+  def comp_winner
+    puts "----------"
+    puts "You have been defeated the computer"
+    puts "Pretty sneaky Sis"
+    puts "----------"
   end
 
   ###
