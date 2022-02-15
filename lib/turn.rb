@@ -27,15 +27,17 @@ class Turn
         user_response = @user_interface.getinput.upcase
 
       end
+#      if @board.won?
+#        puts "Congrats #{type}"
+#      end
     else
       #ai turnstuff here
       comp_response = @user_interface.compinput.upcase
       # @board.place_piece(comp_respone, 'O')
       while @board.place_piece(comp_response,'O') == false
-        p "comp tried"
         comp_response = @user_interface.compinput.upcase
       end
-      @board.display
+#      @board.display
     end
   end
 
