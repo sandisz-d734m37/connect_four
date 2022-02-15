@@ -1,5 +1,5 @@
 require 'pry'
-require './lib/main_menu'
+#require './lib/main_menu'
 require './lib/user_interface'
 require './lib/turn'
 require './lib/board'
@@ -35,38 +35,51 @@ show user the board
 ###
 board = Board.new
 user_interface = UserInterface.new
-
+player = "human"
+turn = Turn.new(player, board)
+game_count = 0
+###
+# loop till player quits game with q
 loop do
-
   #print msg to user
   user_interface.welcome_banner
 
 #get user input
   user_response = user_interface.getinput
-  player = "human"
+  if game_count == 0
+    turn.start
+  end
 
 #IF user chooses to play the game
   if user_response.upcase == "P"
-    #show the board
-    turn = Turn.new(player, board)
-    turn.start
-    until board.board_is_full? == true || board.won? == true do
-    # binding.pry
+    game_count += 1
+    board.display
+    until board.board_is_full? || board.won? do
+
       turn.take_turn("human")
       if board.won?
         board.display
-        puts
-        puts "Congrats Player"
-        puts
+        user_interface.human_winner
+        board.clear_board
         break
       end
+      if board.board_is_full?
+        board.display
+        user_interface.draw
+        board.clear_board
+        break
+      end
+
       turn.take_turn("comp")
       if board.won?
         board.display
-        puts
-        puts "You have been defeated"
-        puts "Pretty sneaky Sis"
-        puts
+        user_interface.comp_winner
+        board.clear_board
+        break
+      end
+      if board.board_is_full?
+        user_interface.draw
+        board.clear_board
         break
       end
       board.display
@@ -76,5 +89,4 @@ loop do
     puts "bye bye"
     break
   end
-
 end
