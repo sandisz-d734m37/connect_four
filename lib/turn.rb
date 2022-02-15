@@ -13,13 +13,15 @@ class Turn
     @user_interface.place_msg
   end
 
-  def playagain
-    puts "Would you like to play again?"
-    answer = @user_interface.getinput
-    if answer.upcase == "Y"
-      return true
-    end
-  end
+ ###########################################################################
+  #def playagain                               # deprecate until re-factor
+  #  puts "Would you like to play again?"
+  #  answer = @user_interface.getinput
+  #  if answer.upcase == "Y"
+  #    return true
+  #  end
+  #end
+ ###########################################################################
 
   def take_turn(type)
 #moved to end of until loop in runner    @board.display
