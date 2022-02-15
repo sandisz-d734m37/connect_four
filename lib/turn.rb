@@ -22,7 +22,7 @@ class Turn
   end
 
   def take_turn(type)
-    @board.display
+#moved to end of until loop in runner    @board.display
     if type == "human"
 
       user_response = @user_interface.getinput.upcase

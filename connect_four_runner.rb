@@ -53,17 +53,21 @@ loop do
 #IF user chooses to play the game
   if user_response.upcase == "P"
     game_count += 1
+    board.display
     until board.board_is_full? || board.won? do
 
       turn.take_turn("human")
       if board.won?
+        board.display
         user_interface.human_winner
         board.clear_board
         break
       end
       if board.board_is_full?
+        board.display
         user_interface.draw
         board.clear_board
+        break
       end
 
       turn.take_turn("comp")
@@ -76,7 +80,9 @@ loop do
       if board.board_is_full?
         user_interface.draw
         board.clear_board
+        break
       end
+      board.display
     end
   else
     puts "Why would you say #{user_response}..."
