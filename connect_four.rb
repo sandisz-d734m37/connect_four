@@ -35,8 +35,7 @@ show user the board
 ###
 board = Board.new
 user_interface = UserInterface.new
-player = "human"
-turn = Turn.new(player, board)
+turn = Turn.new(board)
 game_count = 0
 ###
 # loop till player quits game with q
