@@ -87,15 +87,15 @@ class Board
   # Check all victory conditions, if any are true game has been won
   ###
   def won?
-    return check_columns || check_rows || check_upward_diagonals || check_downward_diagonals
+    return check_rows || check_columns || check_upward_diagonals || check_downward_diagonals
   end
 
-  def check_columns(board_state = @board)
+  def check_rows(board_state = @board)
 
-    board_state.each do |col|
-      (0..3).each do |row|
-        won = col[row..(row + 3)].all? {
-          |spot| spot == col[row] && spot != "."
+    board_state.each do |row|
+      (0..3).each do |col|
+        won = row[col..(col + 3)].all? {
+          |spot| spot == row[col] && spot != "."
         }
         return true if won
       end
@@ -104,11 +104,11 @@ class Board
     false
   end
 
-  def check_rows(transposed_board = @board.transpose)
-    transposed_board.each do |col|
-      (0..2).each do |row|
-        won = col[row..(row + 3)].all?{
-          |spot| spot == col[row] && spot != "."
+  def check_columns(transposed_board = @board.transpose)
+    transposed_board.each do |row|
+      (0..2).each do |col|
+        won = row[col..(col + 3)].all?{
+          |spot| spot == row[col] && spot != "."
         }
         return true if won
       end
