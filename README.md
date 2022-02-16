@@ -27,46 +27,48 @@ Find four consecutive game pieces.
 
 The logic implemented for matching on rows and columns is the same except use of ruby's .transpose method on the array.
 
-check_rows: Start at a0 then shift right
+**check_rows:** Start at a0 then shift right
 
 |a0| b0| c0| d0
 |---|---|---|---|
 
 The last elements check would be
 
-|d0| e0| f0| g0
+|d5| e5| f5| g5
 |---|---|---|---|
 
 
-check_columns: Start at a0 and shift right
+**check_columns:** Transposes (rotates the array), then start at a0 and shift right
 
 |a0| a1| a2| a3
 |---|---|---|---|
 
 The last elements check would be
 
-|g0| g1| g2| g3
+|g2| g3| g4| g5
 |---|---|---|---|
 
 
-check_upward_diagonals: We start at d0 and look down and to the left for 4 elements
+**check_upward_diagonals:** We start at d0 and look up and to the left for 4 elements, then shovels all 4 into an array
 
 |d0| c1| b2| a3
 |---|---|---|---|
 
-when we find the 4 to be the same we have a win
-we loop across columns D-G and rows 0-2.
+Now, d0, c1, b2, & a3 are put into an array.
+The array is then checked, and if we find all 4 items in the array to be the same, we have a win!
+We loop across columns D-G and rows 0-2.
 Thus the last 4 elements checked would be
 
 |g2|f3|e4|d5
 |---|---|---|---|
 
-check_downward_diagonals: We start at a0 and look down and to the right for 4 elements
+**check_downward_diagonals:** We start at a0 and look down and to the right for 4 elements, then shovels all 4 into an array
 
 |a0| b1| c2| d3
 |---|---|---|---|
 
-when we find the 4 to be the same we have a win
+Now a0, b1, c2, and d3 are all put into an array.
+The array is then checked, and if we find all 4 to be the same we have a win!
 we loop across columns A-D and rows 0-2.
 Thus the last 4 elements checked would be
 

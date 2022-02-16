@@ -35,7 +35,7 @@ RSpec.describe Board do
 
     expect(board.won?).to be false
 
-    until board.won? == true
+    until board.check_columns == true
       board.place_piece('G', 'X')
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Board do
 
     expect(board.won?).to be false
 
-    until board.won? == true
+    until board.check_rows == true
       (0..3).each do |col|
         board.place_piece(col, 'X')
       end
@@ -112,7 +112,7 @@ RSpec.describe Board do
 
     expect(board.won?).to be false
 
-    until board.check_rows == true
+    until board.check_columns == true
       board.place_piece('G', 'X')
       end
     expect(board.won?).to be true
