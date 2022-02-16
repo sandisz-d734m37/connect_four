@@ -1,11 +1,12 @@
+###----------------------------------------
+# UserInterface: Collection of output messges
+#                allows for user input
+###----------------------------------------
 class UserInterface
 
   def initialize
   end
 
-  ###
-  # print to screen weclome
-  ###
   def welcome_banner
     puts "Welcome to CONNECT FOUR"
     puts "Enter p to play. Enter q to quit."
@@ -41,11 +42,11 @@ class UserInterface
     gets.chomp
   end
 
+  ###
+  # create a random input for the computers turn in turn.take_turn
+  ###
   def compinput
     opt = ["A","B","C","D","E","F","G"]
     opt.sample
   end
-
-
-
 end
